@@ -127,12 +127,11 @@
 //    NSURL *trackURI = firstURIResult;
 //    NSLog(@"%@", results.items[0]); // prints <SPTPartialTrack: 0x7fbb1a724da0>: Billie Jean - Single Version (spotify:track:5ChkMS8OtdzJeqyybCc9R5)
 //
+    
+    //return [self.olutosin count];
+    //return [self.mySPTListPageResults.items count];
+    
     return 1;
-   // return [self.olutosin count];
-    
-    
-    
-
 }
 
 
@@ -148,11 +147,10 @@
    // cell.textLabel.text = spotifyElementToPutInRow ;
     
     //NSString *spotifyElementToPutInRow = self.olutosin[indexPath];
+    
+    //cell.textLabel.text = self.olutosin[indexPath.row];
+    
     cell.textLabel.text = self.olutosin[0];
-    
-    
-//    NSString *stringToPutInRow = [NSString stringWithFormat:@"%ld", (long)indexPath.row + 1];
-//    cell.textLabel.text = stringToPutInRow;
     return cell;
 }
 
@@ -200,5 +198,21 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    /******************************************************************
+     STEP 4
+     ******************************************************************/
+     NSURL *trackURI = [NSURL URLWithString:self.olutosin[0]]; //triller
+    [self.player playURIs:@[ trackURI ] fromIndex:0 callback:^(NSError *error) {
+        if (error != nil)
+        {
+            NSLog(@"*** Starting playback got error: %@", error);
+            return;
+        }
+    }];
+
+}
 
 @end
